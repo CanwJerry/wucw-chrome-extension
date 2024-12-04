@@ -1,0 +1,17 @@
+#botton-box {
+  padding: 2px;
+}
+
+#botton-box .copy {
+	cursor: pointer;
+  padding: 10px;
+  background-color: #1e80ff;
+  border-radius: 2px;
+  color: #fff;
+  border: none;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #1860be;
+  }
+}
