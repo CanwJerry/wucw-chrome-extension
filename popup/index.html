@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chrome Extension</title>
+  </head>
+	<link rel="stylesheet" href="./index.scss.css">
+
+  <body>
+		<section id="botton-box">
+			<fieldset id="fieldset-box">
+        <legend>选择环境:</legend>
+      
+        <div class="radio-item">
+          <input type="radio" id="pro" name="env" value="pro" checked />
+          <label for="pro">正式</label>
+        </div>
+      
+        <div class="radio-item">
+          <input type="radio" id="dev" name="env" value="dev" />
+          <label for="dev">预览</label>
+        </div>
+      </fieldset>
+      
+			<button class="copy-current-page">复制当前链接</button>
+			<button class="copy-some-page">复制XX页面链接</button>
+			<button class="generate-url-qrcode">生成URL & QRCode</button>
+			<button class="open-env">打开配置环境</button>
+		</section>
+	</body>
+
+	<script src="./index.js"></script>
+</html>

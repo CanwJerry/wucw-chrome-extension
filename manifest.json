@@ -1,10 +1,30 @@
 {
-  "name": "chrome-extension",
+  "name": "Shopify Quick Entry",
   "version": "1.0",
   "description": "Build an Extension!",
   "manifest_version": 3,
 
+  "permissions": ["scripting", "activeTab", "tabs", "notifications"],
+
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup/index.html",
+    "default_icon": "/icons/candy.png",
+    "default_title": "shopify quick entry"
+  },
+
+  "background": {
+    "service_worker": "/background/service_worker.js",
+    "type": "module"
+  },
+
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+F",
+        "mac": "Command+Shift+F",
+        "chromeos": "Ctrl+Shift+F",
+        "linux": "Ctrl+Shift+F"
+      }
+    }
   }
 }

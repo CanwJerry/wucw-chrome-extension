@@ -1,0 +1,41 @@
+#botton-box {
+  padding: 2px;
+}
+
+#botton-box .fieldset-box {
+  margin-bottom: 4px;
+}
+
+#botton-box .radio-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 4px;
+  vertical-align: middle;
+
+  label {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+#botton-box .copy-current-page,
+#botton-box .copy-some-page,
+#botton-box .generate-url-qrcode,
+#botton-box .open-env {
+	cursor: pointer;
+  padding: 10px;
+  background-color: #1e80ff;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  margin: 4px 0;
+
+  &:hover {
+    background-color: #1860be;
+  }
+}
