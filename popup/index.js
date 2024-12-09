@@ -5,9 +5,12 @@ const openEnv = document.querySelector(".open-env");
 const openHome = document.querySelector(".open-home");
 const pro = document.getElementById("pro");
 const dev = document.getElementById("dev");
+
 let currentEnv = 'pro';
 const handleButtonClick = async (data) => {
   try {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+  
     switch(data) {
       case 'pro':
         currentEnv = 'pro';
@@ -18,35 +21,16 @@ const handleButtonClick = async (data) => {
         break;
 
       case 'current_page':
-        //向 Service Worker 发送消息
-        chrome.runtime.sendMessage({
-          action: 'fromPopup',
-          data: currentEnv
-        });
+        //向 content script 发送消息
+        await chrome.tabs.sendMessage(tab.id, { msg: "currentPage", data: currentEnv });
         break;
 
       case 'some_page':
-        //TODO: 获取 tab 数据
-        const [tab] = await chrome.tabs.query({
-          url: ["https://www.andaseat.com/*"],
-          active: true,
-          currentWindow: true
-        });
-
-        if(tab) {
-          //TODO: 使用 chrome.tabs.sendMessage 发送消息
-          chrome.tabs.sendMessage(tab.id, {
-            action: 'fromPopup2Content'
-          })
-        }
+        await chrome.tabs.sendMessage(tab.id, { msg: "somePage", data: currentEnv });
         break;
 
       case 'url_qrcode':
-        console.log("Url qrcode", currentEnv);
-        chrome.runtime.sendMessage({
-          action: 'fromPopupQRCode',
-          data: currentEnv
-        });
+        await chrome.tabs.sendMessage(tab.id, { msg: "QRCode", data: currentEnv });
         break;
 
       case 'open_home':
@@ -59,9 +43,10 @@ const handleButtonClick = async (data) => {
         window.open(`https://admin.shopify.com/store/andaseatglobal/themes/${themeId}/editor`, '_blank');
         break;
     }
-  } catch (e) {
-    console.error("An error occurred:", e);
+  } catch (error) {
+    console.log(error);
   }
+  
 };
 
 pro.addEventListener("click", () => handleButtonClick('pro'));

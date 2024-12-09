@@ -21,9 +21,21 @@
   },
 
   "background": {
-    "service_worker": "/background/service_worker.js",
+    "service_worker": "/background/service-worker.js",
     "type": "module"
   },
+
+  "content_scripts": [
+    {
+      "matches": ["https://*.andaseat.com/*"],
+      "css": [],
+      "js": ["/background/content-script.js"]
+    }
+  ],
+
+  "host_permissions": [
+		"https://*/*"
+	],
 
   "commands": {
     "_execute_action": {
