@@ -9,7 +9,15 @@
   "action": {
     "default_popup": "popup/index.html",
     "default_icon": "/icons/candy.png",
-    "default_title": "shopify quick entry"
+    "default_title": "Quick start: Ctrl+Shift+F"
+  },
+
+  "icons": {
+    "16": "/icons/candy.png",
+    "32": "/icons/candy.png",
+    "48": "/icons/candy.png",
+    "64": "/icons/candy.png",
+    "128": "/icons/candy.png"
   },
 
   "background": {
