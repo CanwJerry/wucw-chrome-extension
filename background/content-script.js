@@ -16,12 +16,16 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 function pro(data) {
-  const proUrl = window.location.href;
+  let proUrl;
+  if(window.location.href.indexOf('/?_ab=0&_fd=0&_sc=1') > -1) {
+    proUrl = window.location.href.replace('/?_ab=0&_fd=0&_sc=1', '');
+  } else {
+    proUrl = window.location.href;
+  }
 
   switch (data) {
     case "currentPage":
-      copyFunc(proUrl);
-      console.log("pro环境复制成功");
+      copyFunc("生产环境链接复制成功", proUrl);
       break;
     case "QRCode":
       console.log("这是pro QRCode");
@@ -39,12 +43,11 @@ function dev(data) {
     const url = iframeDoc.getElementById("share_theme_url").value;
     const pathName = window.location.pathname;
     const search = window.location.search;
-    const devUrl = `${url}${pathName}${search}`;
+    const devUrl = `${url}${pathName}${search}` || '';
 
     switch (data) {
       case "currentPage":
-        copyFunc(devUrl);
-        console.log("dev环境复制成功");
+        copyFunc("开发环境链接复制成功", devUrl);
         break;
       case "QRCode":
         console.log("这是dev QRCode");
@@ -54,12 +57,13 @@ function dev(data) {
         break;
     }
   } else {
-		console.log('当前不是测试环境');
+    tips('当前不是测试环境', '');
 	}
 }
 
-function copyFunc(url) {
-	console.log(url);
+function copyFunc(msg, url) {
+  tips(msg, url);
+
   const input = window.document.createElement("input");
 
   window.document.body.appendChild(input);
@@ -73,4 +77,10 @@ function copyFunc(url) {
   }
 
   window.document.body.removeChild(input);
+}
+
+function tips(msg, url) {
+  new Toast().init();
+      
+  new Toast().show(msg, url, null, null);
 }

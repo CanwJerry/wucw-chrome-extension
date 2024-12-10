@@ -3,15 +3,17 @@
   "version": "1.0",
   "description": "Build an Extension!",
   "manifest_version": 3,
-
-  "permissions": ["scripting", "activeTab", "tabs", "notifications"],
-
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs",
+    "notifications"
+  ],
   "action": {
     "default_popup": "popup/index.html",
     "default_icon": "/icons/candy.png",
     "default_title": "Quick start: Ctrl+Shift+F"
   },
-
   "icons": {
     "16": "/icons/candy.png",
     "32": "/icons/candy.png",
@@ -19,24 +21,27 @@
     "64": "/icons/candy.png",
     "128": "/icons/candy.png"
   },
-
   "background": {
     "service_worker": "/background/service-worker.js",
     "type": "module"
   },
-
   "content_scripts": [
     {
-      "matches": ["https://*.andaseat.com/*"],
-      "css": [],
-      "js": ["/background/content-script.js"]
+      "matches": [
+        "https://*.andaseat.com/*"
+      ],
+      "css": [
+        "/styles/toast.css"
+      ],
+      "js": [
+        "/background/content-script.js",
+        "/background/toast.js"
+      ]
     }
   ],
-
   "host_permissions": [
-		"https://*/*"
-	],
-
+    "https://*/*"
+  ],
   "commands": {
     "_execute_action": {
       "suggested_key": {
