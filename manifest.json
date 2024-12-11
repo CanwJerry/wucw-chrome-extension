@@ -1,6 +1,6 @@
 {
   "name": "Shopify Quick Entry",
-  "version": "1.0",
+  "version": "0.0.3",
   "description": "Build an Extension!",
   "manifest_version": 3,
   "permissions": [
@@ -35,7 +35,8 @@
       ],
       "js": [
         "/background/content-script.js",
-        "/background/toast.js"
+        "/background/toast.js",
+        "/background/qrcode.js"
       ]
     }
   ],

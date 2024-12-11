@@ -1,8 +1,11 @@
 const copyCurrentPage = document.querySelector(".copy-current-page");
-// const copySomePage = document.querySelector(".copy-some-page");
 const generateUrlQrcode = document.querySelector(".generate-url-qrcode");
 const openEnv = document.querySelector(".open-env");
 const openHome = document.querySelector(".open-home");
+const openBackFile = document.querySelector(".open-back-file");
+const openBackPage = document.querySelector(".open-back-page");
+const getPdId = document.querySelector(".get-pd-id");
+
 const pro = document.getElementById("pro");
 const dev = document.getElementById("dev");
 
@@ -25,12 +28,20 @@ const handleButtonClick = async (data) => {
         await chrome.tabs.sendMessage(tab.id, { msg: "currentPage", data: currentEnv });
         break;
 
-      case 'some_page':
-        await chrome.tabs.sendMessage(tab.id, { msg: "somePage", data: currentEnv });
-        break;
-
       case 'url_qrcode':
         await chrome.tabs.sendMessage(tab.id, { msg: "QRCode", data: currentEnv });
+        break;
+
+      case 'get_pd_id':
+        await chrome.tabs.sendMessage(tab.id, { msg: "getPdId", data: currentEnv });
+        break;
+
+      case 'open_back_file':
+        window.open(`https://admin.shopify.com/store/andaseatglobal/content/files?selectedView=all`, '_blank');
+        break;
+        
+      case 'open_back_page':
+        window.open(`https://admin.shopify.com/store/andaseatglobal/pages`, '_blank');
         break;
 
       case 'open_home':
@@ -55,10 +66,14 @@ dev.addEventListener("click", () => handleButtonClick('dev'));
 
 copyCurrentPage.addEventListener("click", () => handleButtonClick('current_page'));
 
-// copySomePage.addEventListener("click", () => handleButtonClick('some_page'));
-
 generateUrlQrcode.addEventListener("click", () => handleButtonClick('url_qrcode'));
 
 openEnv.addEventListener("click", () => handleButtonClick('open_env'));
 
 openHome.addEventListener("click", () => handleButtonClick('open_home'));
+
+openBackFile.addEventListener("click", () => handleButtonClick('open_back_file'));
+
+openBackPage.addEventListener("click", () => handleButtonClick('open_back_page'));
+
+getPdId.addEventListener("click", () => handleButtonClick('get_pd_id'));

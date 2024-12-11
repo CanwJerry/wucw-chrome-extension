@@ -6,9 +6,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     } else if (request.msg === "QRCode") {
       request.data === "pro" && pro("QRCode");
       request.data === "dev" && dev("QRCode");
-    } else if (request.msg === "somePage") {
-      request.data === "pro" && pro("somePage");
-      request.data === "dev" && dev("somePage");
+    } else if (request.msg === "getPdId") {
+      request.data === "pro" && pro("getPdId");
+      request.data === "dev" && dev("getPdId");
     }
   })();
 
@@ -28,10 +28,10 @@ function pro(data) {
       copyFunc("生产环境链接复制成功", proUrl);
       break;
     case "QRCode":
-      console.log("这是pro QRCode");
+			copyFunc("QRCode", proUrl);
       break;
-    case "somePage":
-      console.log("这是pro somePage");
+    case "getPdId":
+			getProductInfo();
       break;
   }
 }
@@ -50,10 +50,10 @@ function dev(data) {
         copyFunc("开发环境链接复制成功", devUrl);
         break;
       case "QRCode":
-        console.log("这是dev QRCode");
+        copyFunc("QRCode", devUrl);
         break;
-      case "somePage":
-        console.log("这是dev somePage");
+      case "getPdId":
+        getProductInfo();
         break;
     }
   } else {
@@ -77,6 +77,24 @@ function copyFunc(msg, url) {
   }
 
   window.document.body.removeChild(input);
+}
+
+function getProductInfo() {
+	if(window.location.pathname.indexOf('/products') > -1) {
+		fetch(`${window.location.href.split('?')[0]}.json`)
+			.then(response => response.json())
+			.then(data => {
+				const title = data.product.title;
+				const length = data.product.variants.length;
+				const str = title.concat('<br/>VARIANTS: ' + length);
+				copyFunc(str, 'ID: ' + data.product.id);
+			})
+			.catch(error => {
+				tips('出错了~😱');
+			})
+	} else {
+		tips('当前不在产品页面 😰');
+	}
 }
 
 function tips(msg, url) {
