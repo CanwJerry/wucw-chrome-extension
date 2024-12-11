@@ -81,6 +81,7 @@ function copyFunc(msg, url) {
 
 function getProductInfo() {
 	if(window.location.pathname.indexOf('/products') > -1) {
+    tips('加载中..✨✨');
 		fetch(`${window.location.href.split('?')[0]}.json`)
 			.then(response => response.json())
 			.then(data => {

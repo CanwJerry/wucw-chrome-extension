@@ -1,6 +1,6 @@
 {
   "name": "Shopify Quick Entry",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Build an Extension!",
   "manifest_version": 3,
   "permissions": [
