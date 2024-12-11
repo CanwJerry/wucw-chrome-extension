@@ -5,6 +5,8 @@ class Toast {
   }
 	
   init(html) {
+    this.hide();
+
     let chromeToastNode = document.createElement("section");
     chromeToastNode.innerHTML =`
       <span class="close-btn">x</span>
@@ -67,10 +69,7 @@ class Toast {
     chromeDomToastTips.style.display = "flex";
 
     chromeDomToastClose.addEventListener("click", () => {
-      if (chromeDomToastTips) {
-        chromeDomToastTips.style.display = "none";
-        document.body.removeChild(chromeDomToastTips);
-      }
+      this.hide();
     })
 		
     // const that = this;
