@@ -4,6 +4,7 @@ const openEnv = document.querySelector(".open-env");
 const openHome = document.querySelector(".open-home");
 const openBackFile = document.querySelector(".open-back-file");
 const openBackPage = document.querySelector(".open-back-page");
+const openBackProduct = document.querySelector(".open-back-product");
 const getPdId = document.querySelector(".get-pd-id");
 
 const pro = document.getElementById("pro");
@@ -44,6 +45,10 @@ const handleButtonClick = async (data) => {
         window.open(`https://admin.shopify.com/store/andaseatglobal/pages`, '_blank');
         break;
 
+      case 'open_back_product':
+        window.open(`https://admin.shopify.com/store/andaseatglobal/products?selectedView=all`, '_blank');
+        break;
+
       case 'open_home':
         const env = currentEnv === 'pro' ? '?key=d3f8ea580ef6dbee2771397f87c1d0adb19203f2c5de85f913e986630e8b4160&preview_theme_id=' : '?_ab=0&_fd=0&_sc=1&preview_theme_id=127730122811'
         window.open(`https://www.andaseat.com/${env}`, '_blank');
@@ -75,5 +80,7 @@ openHome.addEventListener("click", () => handleButtonClick('open_home'));
 openBackFile.addEventListener("click", () => handleButtonClick('open_back_file'));
 
 openBackPage.addEventListener("click", () => handleButtonClick('open_back_page'));
+
+openBackProduct.addEventListener("click", () => handleButtonClick('open_back_product'));
 
 getPdId.addEventListener("click", () => handleButtonClick('get_pd_id'));
